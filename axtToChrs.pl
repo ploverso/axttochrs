@@ -45,7 +45,7 @@ sub processAxt{
 			print "$lineNum\n";
 		}
 	}
-	
+	close $axtData;
 }
 
 
