@@ -10,4 +10,4 @@
 use warnings;
 use strict;
 
-my ($locs, $dataFolder, $retWindow, $outDir) = @ARGV;
+my ($inFile, $outDir) = @ARGV;
