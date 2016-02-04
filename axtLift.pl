@@ -42,7 +42,7 @@ sub axtLift{
 	my $lineNum = 0;
 	GTFLINE:while(my $line = <$gffData>){
 		$lineNum ++;
-		print "$lineNum\n";
+		#print "$lineNum\n";
 		my @line = split(/\t/, $line);
 		my $mmstart = $line[3];
 		my $mmend = $line[4];
