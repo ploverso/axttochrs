@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 # Example usage:
-# perl axtLift.pl myGtfFile.gtf myAxtFile.axt myOutFile.gtf
+# perl axtLift.pl myGtfFile.gtf myAxtFile.axt /path/to/output/directory/
 
 use warnings 'FATAL';
 use strict;
