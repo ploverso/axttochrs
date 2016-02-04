@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 # Example usage:
-# perl axtLift.pl myGtfFile.gtf myAxtFile.axt /path/to/output/directory/
+# perl axtLift.pl myGtfFile.gtf myAxtFile.axt myOutFile.gtf
 
 use warnings 'FATAL';
 use strict;
@@ -40,15 +40,22 @@ sub axtLift{
 	#~ print "$lastAxt[1]\n";
 	
 	my $lineNum = 0;
-	while(my $line = <$gffData>){
-		#~ $lineNum ++;
-		#~ print "$lineNum\n";
+	GTFLINE:while(my $line = <$gffData>){
+		$lineNum ++;
+		print "$lineNum\n";
 		my @line = split(/\t/, $line);
 		my $mmstart = $line[3];
 		my $mmend = $line[4];
 		my $mmstrand = $line[6];
 		while($mmstart > $fromEnd){
 			@lastAxt = nextAxt($axtData);
+			if($lastAxt[0] == ""){
+				my $outFile = $outDir . "/" . $line[0] . "_unmapped.gff";
+				open my $outData, '>>', $outFile or die "could not open $outFile";
+				print $outData join("\t", @line);
+				close $outData;
+				next GTFLINE;
+			}
 			($fromStart, $fromEnd, $toChr, $toStart, $toEnd, $toStrand) = axtLocs($lastAxt[0]);
 		}
 		if($fromStart > $mmstart || $fromEnd < $mmend){
