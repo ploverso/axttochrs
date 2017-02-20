@@ -49,7 +49,7 @@ sub axtLift{
 		my $mmstrand = $line[6];
 		while($mmstart > $fromEnd){
 			@lastAxt = nextAxt($axtData);
-			if($lastAxt[0] == ""){
+			if($lastAxt[0] eq ""){
 				my $outFile = $outDir . "/" . $line[0] . "_unmapped.gff";
 				open my $outData, '>>', $outFile or die "could not open $outFile";
 				print $outData join("\t", @line);
